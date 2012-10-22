@@ -20,6 +20,7 @@
     <orderEntry type="library" name="scala-compiler" level="project" />
     <orderEntry type="library" scope="TEST" name="junit-4.10" level="project" />
     <orderEntry type="library" name="org.scalatest:scalatest_2.10.0-M7:2.0.M4-2.10.0-M7-B1" level="project" />
+    <orderEntry type="library" name="org.scalamock:scalamock-scalatest-support_2.10.0-RC1:3.0-M5" level="application" />
   </component>
 </module>
 
