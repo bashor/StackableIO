@@ -1,18 +1,25 @@
-trait ToUpper extends Translation {
-  protected abstract override def translate(char: Char): Option[Char] = Some(char.toUpper)
+trait ToUpper extends BaseTranslation {
+  protected abstract override def translate(char: Char): Option[Char] = super.translate(char) match {
+    case Some(newChar) => Some(char.toUpper)
+    case _ => None
+  }
 }
 
-trait StripWhiteSpace extends Translation {
-  protected abstract override def translate(char: Char): Option[Char] = if (char.isWhitespace) None else Some(char)
+trait StripWhiteSpace extends BaseTranslation {
+  protected abstract override def translate(char: Char): Option[Char] = super.translate(char) match {
+    case Some(newChar) => if (char.isWhitespace) None else Some(char)
+    case _ => None
+  }
 }
 
-trait AsciiOnly extends Translation {
-  protected abstract override def translate(char: Char): Option[Char] = {
-//    println((char & 0x7F))
-//    println(char)
-    if (((char & 0x7F) ^ char) == 0)
-      Some(char)
-    else
-      None
+trait AsciiOnly extends BaseTranslation {
+  protected abstract override def translate(char: Char): Option[Char] = super.translate(char) match {
+    case Some(newChar) => {
+      if (((char & 0x7F) ^ char) == 0)
+        Some(char)
+      else
+        None
+    }
+    case _ => None
   }
 }
